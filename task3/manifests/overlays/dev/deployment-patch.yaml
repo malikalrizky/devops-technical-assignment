@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-k8s-app
+spec:
+  replicas: 1  # Fewer replicas for dev
+  template:
+    spec:
+      containers:
+      - name: my-k8s-app
+        resources:
+          requests:
+            cpu: 50m
+            memory: 64Mi
+          limits:
+            cpu: 200m
+            memory: 256Mi
+        env:
+        - name: NODE_ENV
+          value: "development"
+        # Enable debug logging
+        - name: DEBUG
+          value: "true"
